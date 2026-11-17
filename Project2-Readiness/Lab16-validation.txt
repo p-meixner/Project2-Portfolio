@@ -1,0 +1,48 @@
+Decision date: 2026-03-31
+Starting rows: 12
+1. Quarantined: no ticker: removed 1; rows: 11
+2. Exact duplicate: removed 1; rows: 7
+3. Published after decision date: removed 3; rows: 3, 8, 10
+4. Older vintage replaced by revision: removed 1; rows: 2
+
+As-of panel (6 rows)
+Row  Ticker  Month    Published     Index
+  1  AAA     2026-01  2026-02-10   101.0
+  4  AAA     2026-02  2026-03-25   103.0
+  5  BBB     2026-01  2026-02-10    98.0
+  6  BBB     2026-02  2026-03-10    97.0
+  9  CCC     2026-01  2026-02-10   110.0
+ 12  CCC     2026-02  2026-03-10   111.0
+
+Ticker  As-of signal                       Naive signal
+AAA     +1.98% (February 2026)            +5.83% (March 2026)
+BBB     -1.02% (February 2026)            -5.15% (March 2026)
+CCC     +0.91% (February 2026)            +1.82% (February 2026)
+
+PASS: March 31 panel and all known-answer signals match.
+
+--- April 15 date-change check ---
+Decision date: 2026-04-15
+Starting rows: 12
+1. Quarantined: no ticker: removed 1; rows: 11
+2. Exact duplicate: removed 1; rows: 7
+3. Published after decision date: removed 0; rows: none
+4. Older vintage replaced by revision: removed 2; rows: 2, 12
+
+As-of panel (8 rows)
+Row  Ticker  Month    Published     Index
+  1  AAA     2026-01  2026-02-10   101.0
+  3  AAA     2026-03  2026-04-10   109.0
+  4  AAA     2026-02  2026-03-25   103.0
+  5  BBB     2026-01  2026-02-10    98.0
+  6  BBB     2026-02  2026-03-10    97.0
+  8  BBB     2026-03  2026-04-10    92.0
+  9  CCC     2026-01  2026-02-10   110.0
+ 10  CCC     2026-02  2026-04-05   112.0
+
+Ticker  As-of signal                       Naive signal
+AAA     +5.83% (March 2026)               +5.83% (March 2026)
+BBB     -5.15% (March 2026)               -5.15% (March 2026)
+CCC     +1.82% (February 2026)            +1.82% (February 2026)
+
+PASS: April 15 as-of panel and signals equal naive results.

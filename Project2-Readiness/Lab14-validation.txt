@@ -1,0 +1,86 @@
+COMMAND: python portfolio.py
+Meridian - course-authored training inputs, not market estimates
+Objective: 6.50% (CPI estimate 2.5% + 4%)
+Weight order: Treasury bills / Treasury 10-year note / Investment-grade bond fund / Global equity index fund
+
+Benchmark
+Weights (%): 0.0 / 0.0 / 40.0 / 60.0
+Expected return: 6.80%
+Volatility: 10.46%
+Reserve-eligible weight: 0.0%
+Meets objective: yes
+
+Equal weight
+Weights (%): 25.0 / 25.0 / 25.0 / 25.0
+Expected return: 5.20%
+Volatility: 5.21%
+Reserve-eligible weight: 50.0%
+Meets objective: no
+
+Inverse volatility
+Weights (%): 84.3 / 6.0 / 7.0 / 2.6
+Expected return: 3.77%
+Volatility: 1.05%
+Reserve-eligible weight: 90.3%
+Meets objective: no
+
+Meeting the expected-return objective is not full mandate compliance.
+Displayed weights are rounded; calculations use unrounded weights.
+
+COMMAND: python mandate.py
+Reserve minimum: 3.0% of the portfolio
+
+Candidate A
+Weights sum to 100: 100.0 pass
+Long-only (lowest weight): 0.0 pass
+Reserve >= 3.0%: 14.0 pass
+Redeemable in 5 days >= 90.0%: 100.0 pass
+Largest single company <= 8.0%: 0.0 pass
+Calendar-year loss: requires CIO clarification
+passes every checkable rule
+
+Candidate B
+Weights sum to 100: 100.0 pass
+Long-only (lowest weight): 0.0 pass
+Reserve >= 3.0%: 1.0 FAIL
+Redeemable in 5 days >= 90.0%: 85.0 FAIL
+Largest single company <= 8.0%: 9.0 FAIL
+Calendar-year loss: requires CIO clarification
+fails 3 rule(s)
+
+Candidate C
+Weights sum to 100: 100.0 pass
+Long-only (lowest weight): 0.0 pass
+Reserve >= 3.0%: 2.0 FAIL
+Redeemable in 5 days >= 90.0%: 100.0 pass
+Largest single company <= 8.0%: 8.0 pass
+Calendar-year loss: requires CIO clarification
+fails 1 rule(s)
+
+Candidate D
+Weights sum to 100: 100.0 pass
+Long-only (lowest weight): 0.0 pass
+Reserve >= 3.0%: 100.0 pass
+Redeemable in 5 days >= 90.0%: 100.0 pass
+Largest single company <= 8.0%: 0.0 pass
+Calendar-year loss: requires CIO clarification
+passes every checkable rule
+
+Candidate E
+Weights sum to 100: 100.0 pass
+Long-only (lowest weight): 0.0 pass
+Reserve >= 3.0%: 0.0 FAIL
+Redeemable in 5 days >= 90.0%: 100.0 pass
+Largest single company <= 8.0%: 0.0 pass
+Calendar-year loss: requires CIO clarification
+fails 1 rule(s)
+
+Scope: these are allocation checks, not a complete suitability verdict.
+Turnover, rebalancing, costs, and performance need additional data.
+
+PASS: all baseline weights, returns, volatilities, reserves and objective verdicts
+PASS: correlation 0.50 gives benchmark volatility 11.00%
+PASS: out of range rejected before portfolio output: Correlation [2][3] must be between -1 and 1.
+PASS: asymmetry rejected before portfolio output: Correlation table is not symmetric at [2][3].
+PASS: candidate E fails only reserve at 0.0%
+PASS: saved base correlation remains 0.25

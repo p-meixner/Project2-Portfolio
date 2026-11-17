@@ -1,0 +1,42 @@
+[
+  {
+    "ticker": "SOXX",
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/SOXX?period1=1630454400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "history_page": "https://finance.yahoo.com/quote/SOXX/history/",
+    "downloaded_utc": "2026-10-22T21:28:20.792044+00:00",
+    "field": "indicators.adjclose[0].adjclose",
+    "method": "last trading-day adjusted close per completed calendar month",
+    "price_rows": 61,
+    "monthly_returns": 60
+  },
+  {
+    "ticker": "VTI",
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/VTI?period1=1630454400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "history_page": "https://finance.yahoo.com/quote/VTI/history/",
+    "downloaded_utc": "2026-10-22T21:28:21.030591+00:00",
+    "field": "indicators.adjclose[0].adjclose",
+    "method": "last trading-day adjusted close per completed calendar month",
+    "price_rows": 61,
+    "monthly_returns": 60
+  },
+  {
+    "ticker": "BND",
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/BND?period1=1630454400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "history_page": "https://finance.yahoo.com/quote/BND/history/",
+    "downloaded_utc": "2026-10-22T21:28:21.242893+00:00",
+    "field": "indicators.adjclose[0].adjclose",
+    "method": "last trading-day adjusted close per completed calendar month",
+    "price_rows": 61,
+    "monthly_returns": 60
+  },
+  {
+    "ticker": "SGOV",
+    "url": "https://query1.finance.yahoo.com/v8/finance/chart/SGOV?period1=1630454400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "history_page": "https://finance.yahoo.com/quote/SGOV/history/",
+    "downloaded_utc": "2026-10-22T21:28:21.438398+00:00",
+    "field": "indicators.adjclose[0].adjclose",
+    "method": "last trading-day adjusted close per completed calendar month",
+    "price_rows": 61,
+    "monthly_returns": 60
+  }
+]
