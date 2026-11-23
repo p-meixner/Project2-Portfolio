@@ -1,0 +1,13 @@
+item,required,location_or_url,title,duration_or_as_of,timestamp_index,access_checked,frozen_or_commit_id,notes
+Editions A and B,no,,Kept by student,,,,,Project 2 instructions say neither is submitted
+Repository,yes,https://github.com/p-meixner/Project2-Portfolio,Project 2 repository,,,,,Confirm final commit and access
+Visible executed output,yes,https://github.com/p-meixner/Project2-Portfolio/blob/main/Project2-Readiness/project2-output.json,Executed output,2026-09-30,,,,Upload and verify link
+Decision memo,yes,https://github.com/p-meixner/Project2-Portfolio/blob/main/Project2-Readiness/docs/decision-memo.md,Decision memo,,,,,Upload and verify link
+Validation and AI use,yes,https://github.com/p-meixner/Project2-Portfolio/blob/main/Project2-Readiness/docs/validation-and-ai-use.md,Validation and AI use,,,,,AI-enhanced record disclosed; instructor ruling on exception
+Video 1,yes,,Research evolution and AI check,,,,,Record and add YouTube link
+Transcript video 1,yes,,Video 1 transcript,,,,,Attach or add repository link after recording
+Video 2,yes,,Code walkthrough,,,,,Record and add YouTube link
+Transcript video 2,yes,,Video 2 transcript,,,,,Attach or add repository link after recording
+Video 3,yes,,Committee presentation,,,,,Open with live app; record and add YouTube link
+Transcript video 3,yes,,Video 3 transcript,,,,,Attach or add repository link after recording
+Optional deployed output,no,,Optional deployment,,,,,Not required

@@ -1,0 +1,95 @@
+﻿{
+  "data_through": "2026-09-30",
+  "downloaded_utc": "2026-10-22",
+  "objective_annual": 0.065,
+  "reserve_minimum": 0.05,
+  "scenarios": {
+    "equal_weight": {
+      "weights": {
+        "SOXX": 0.25,
+        "VTI": 0.25,
+        "BND": 0.25,
+        "SGOV": 0.25
+      },
+      "expected_return_net": 0.12761477528569184,
+      "volatility": 0.13691442855337682,
+      "reserve": 0.25,
+      "modeled_checks": "PASS"
+    },
+    "inverse_volatility": {
+      "weights": {
+        "SOXX": 0.011776444849724494,
+        "VTI": 0.027904175524210748,
+        "BND": 0.06889621539333238,
+        "SGOV": 0.8914231642327324
+      },
+      "expected_return_net": 0.04056764018367059,
+      "volatility": 0.01319228757923525,
+      "reserve": 0.8914231642327324,
+      "modeled_checks": "FAIL: return objective"
+    },
+    "meridian_benchmark_proxy_60_vti_40_bnd": {
+      "weights": {
+        "SOXX": 0,
+        "VTI": 0.6,
+        "BND": 0.4,
+        "SGOV": 0
+      },
+      "expected_return_net": 0.07711424239555659,
+      "volatility": 0.11375174070788681,
+      "reserve": 0,
+      "modeled_checks": "FAIL: reserve minimum"
+    },
+    "constrained": {
+      "weights": {
+        "SOXX": 0.1,
+        "VTI": 0.0,
+        "BND": 0.0,
+        "SGOV": 0.9
+      },
+      "expected_return_net": 0.0680550185615654,
+      "volatility": 0.038435965593288976,
+      "reserve": 0.9,
+      "modeled_checks": "PASS"
+    },
+    "last_36_returns": {
+      "weights": {
+        "SOXX": 0.05,
+        "VTI": 0.0,
+        "BND": 0.0,
+        "SGOV": 0.95
+      },
+      "expected_return_net": 0.06744822768153225,
+      "volatility": 0.018704182964130303,
+      "reserve": 0.95,
+      "modeled_checks": "PASS"
+    },
+    "sgov_return_minus_1pp": {
+      "weights": {
+        "SOXX": 0.1,
+        "VTI": 0.1,
+        "BND": 0.0,
+        "SGOV": 0.8
+      },
+      "expected_return_net": 0.06947417748073036,
+      "volatility": 0.051393552296413195,
+      "reserve": 0.8,
+      "modeled_checks": "PASS"
+    },
+    "annual_cost_1pct": {
+      "weights": {
+        "SOXX": 0.1,
+        "VTI": 0.1,
+        "BND": 0.0,
+        "SGOV": 0.8
+      },
+      "expected_return_net": 0.06747417748073035,
+      "volatility": 0.051393552296413195,
+      "reserve": 0.8,
+      "modeled_checks": "PASS"
+    },
+    "reserve_minimum_95pct": {
+      "verdict": "FAIL: no feasible allocation"
+    }
+  }
+}

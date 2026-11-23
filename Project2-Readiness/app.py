@@ -8,11 +8,13 @@ import pandas as pd
 import streamlit as st
 
 from portfolio import (CORRELATIONS, OBJECTIVE_RETURN, RESERVE_INDICES,
-                       SLEEVES, estimate_from_csv, search_portfolio)
+                       SLEEVES, covariance_matrix, equal_weights, expected_return,
+                       inverse_volatility_weights, portfolio_volatility, reserve_weight,
+                       estimate_from_csv, search_portfolio)
 
 st.set_page_config(page_title="Portfolio Stability Decision", layout="wide")
 st.title("Portfolio Stability Decision")
-st.caption("Built with AI help, a learning demonstration, not investment advice.")
+st.caption("Built with OpenAI Codex for coding and analysis; the student must review and own the analysis and decision. Education, not investment advice.")
 
 saved_example = st.sidebar.checkbox("Load Intel-related fund example", value=False)
 objective = st.sidebar.number_input("Expected-return objective (%)", value=OBJECTIVE_RETURN * 100,
@@ -20,6 +22,8 @@ objective = st.sidebar.number_input("Expected-return objective (%)", value=OBJEC
 minimum = st.sidebar.number_input("Reserve minimum (%)", min_value=0.0, max_value=100.0,
                                   value=5.0 if saved_example else 3.0, step=1.0,
                                   key=f"minimum_{saved_example}") / 100
+cost = st.sidebar.number_input("Annual cost assumption (%)", min_value=0.0, max_value=10.0,
+                               value=0.0, step=0.1, help="Illustrative uniform annual drag, not a transaction-cost model.") / 100
 upload = st.sidebar.file_uploader("Upload prices.csv", type=["csv"])
 recent = st.sidebar.checkbox("Use last 36 months", disabled=upload is None and not saved_example)
 st.sidebar.caption("CSV: date first, oldest first; 3–6 tickers of monthly adjusted close prices.")
@@ -55,14 +59,15 @@ try:
         value = left.number_input(f'{sleeve["name"]} expected return (%)',
                                   value=sleeve["return"] * 100, step=0.1, format="%.2f",
                                   key=f"return_{dataset}_{recent}_{i}")
-        edited.append({**sleeve, "return": value / 100})
+        edited.append({**sleeve, "return": value / 100 - cost})
         if right.checkbox(f'{sleeve["name"]} reserve-eligible', value=i in default_reserves,
                           key=f"reserve_{dataset}_{i}"):
             eligible.append(i)
 
-    baseline = search_portfolio(loaded, loaded_corr, objective, minimum, eligible)
+    loaded_net = [{**s, "return": s["return"] - cost} for s in loaded]
+    baseline = search_portfolio(loaded_net, loaded_corr, objective, minimum, eligible)
     current = search_portfolio(edited, selected_corr, objective, minimum, eligible)
-    st.caption("Both answers use the sidebar objective and the same reserve rule. "
+    st.caption("Both answers use the sidebar objective, cost assumption, and the same reserve rule. "
                "As loaded always uses original returns and all CSV months. Search uses 5-point steps.")
     for column, heading, result in zip(st.columns(2),
                                       ["As loaded · all months", "Current inputs"],
@@ -83,5 +88,40 @@ try:
         st.metric("Largest weight change (percentage points)", f"{change:.2f}")
     else:
         st.info("Largest weight change unavailable: both inputs must have a feasible mix.")
+
+    st.subheader("Baselines and modeled mandate checks")
+    st.caption("Pass means these modeled checks only: fully invested, long-only, expected return after the assumed cost at least the objective, and eligible reserves at least the minimum. It is not full mandate compliance.")
+    cov = covariance_matrix(edited, selected_corr)
+    rows = []
+    candidates = [("Equal weight", equal_weights(edited)),
+                  ("Inverse volatility", inverse_volatility_weights(edited))]
+    if dataset != "meridian" and [s["name"] for s in edited] == ["SOXX", "VTI", "BND", "SGOV"]:
+        candidates.append(("60/40 VTI/BND proxy", [0.0, 0.6, 0.4, 0.0]))
+    candidates.append(("Constrained minimum volatility", current["weights"] if current else None))
+    for name, weights in candidates:
+        if weights is None:
+            rows.append({"Portfolio": name, "Weights": "—", "Return net (%)": "—", "Volatility (%)": "—", "Reserve (%)": "—", "Verdict": "FAIL: no feasible allocation"})
+            continue
+        ret = expected_return(weights, edited)
+        vol = portfolio_volatility(weights, cov)
+        reserve = reserve_weight(weights, eligible)
+        failures = []
+        if ret < objective - 1e-12:
+            failures.append("return objective")
+        if reserve < minimum - 1e-12:
+            failures.append("reserve minimum")
+        rows.append({"Portfolio": name,
+                     "Weights": ", ".join(f'{s["name"]} {w:.1%}' for s, w in zip(edited, weights)),
+                     "Return net (%)": f"{ret * 100:.2f}", "Volatility (%)": f"{vol * 100:.2f}",
+                     "Reserve (%)": f"{reserve * 100:.2f}",
+                     "Verdict": "FAIL: " + ", ".join(failures) if failures else "PASS: modeled checks"})
+    st.dataframe(pd.DataFrame(rows), hide_index=True)
+    st.caption("When shown, the 60/40 VTI/BND mix is a US-fund proxy for Meridian's 60% global equity / 40% US investment-grade bonds benchmark; it is not an exact global benchmark. It has no eligible SGOV reserve under this example's reserve rule.")
+    st.caption("Volatility is annualized estimated standard deviation, not a loss guarantee. No maximum volatility was supplied for this classroom example. Issuer exposure, underlying ETF holdings, turnover, trading execution, taxes, liquidity under stress, and future calendar-year loss are not certified.")
+    st.subheader("Point-in-time context: 10-year Treasury yield")
+    st.write("As of September 30, 2026, the latest DGS10 observation in the saved ALFRED vintage was September 29: **5.26% per year**. This is a contextual rate signal; it does not change portfolio weights or prove predictive value.")
+    st.caption("Source: Federal Reserve H.15 via FRED/ALFRED; vintage checked October 29, 2026. Vintage dates do not establish intraday availability. See Lab17.md and Lab17-validation.json for the data card and audit.")
+    st.subheader("Stop condition")
+    st.write("Do not adopt a mix that fails the modeled return or reserve rules, has no feasible solution, or relies on unjustified return estimates. The prior SGOV estimate stress moved weights by 10 percentage points, exceeding the proposed 5-point stability tolerance; do not treat the current historical optimization as ready for adoption.")
 except (ValueError, TypeError, OSError, pd.errors.ParserError) as error:
     st.error(f"Check your inputs: {error}")
