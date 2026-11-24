@@ -1,0 +1,17 @@
+Project 2 - Video 1 — corrected transcript
+
+[00:04] Hello, I am Peter Meixner, and this is Video 1 for my Project 2 investment management application. I will explain how the project developed and show one AI-assisted result I checked.
+
+[00:16] I used OpenAI Codex to help write and check the code and draft the analysis. I have reviewed the analysis and the decision and take responsibility for them. This project is for education, not investment advice.
+
+[00:29] My project asks whether an investment committee should use a portfolio selection process that searches for a low-volatility allocation subject to an expected-return goal and a reserve requirement. The original Lab 13 Meridian case has a seven-year horizon, a CPI plus 4% objective, and several liquidity and concentration constraints.
+
+[00:51] I later explored a classroom fund universe of SOXX, VTI, BND, and SGOV. That example is not Intel's corporate mandate and doesn't implement every Meridian rule.
+
+[01:07] The important change in the current draft is the decision. The model can produce an allocation that passes simplified checks, but that does not establish that it is ready for a real committee to adopt. In the SGOV return stress, one portfolio weight moved by 10 percentage points. That exceeded the proposed five-point stability tolerance and supports rejecting live adoption for now.
+
+[01:38] One AI-assisted output I checked was the prediction that raising the return objective from 6.5% to 7% would shift the solution. The prediction was committed before the run.
+
+[01:51] The resulting allocation changed from 10% SOXX and 90% SGOV to 10% SOXX, 5% VTI, and 85% SGOV. Estimated return and volatility both increased. The prediction and test were AI-assisted.
+
+[02:12] The conclusion is conditional on the data and assumptions, and the remaining checks are documented in the repository. Thank you.
