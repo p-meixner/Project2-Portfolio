@@ -1,0 +1,17 @@
+Project 2 - Video 3 — corrected transcript
+
+[00:06] Hello, I am Peter Meixner and this is my Project 2 investment committee presentation. I will show the portfolio result and explain my recommendation.
+
+[00:16] I used OpenAI Codex to help build and check this application and draft the analysis. I have reviewed the analysis and the decision and take responsibility for them. This is for education, not investment advice.
+
+[00:31] My recommendation to the committee is to reject live adoption of this historical-estimate process for now. Consider a classroom pilot only after the return assumptions, full mandate, risk limits, and stability rules are justified and approved.
+
+[00:48] The proposed classroom objective is an expected annual return of at least 6.5% after assumed costs, with at least 5% in SGOV. At the base assumptions and zero modeled costs, the minimum-volatility solution is 10% SOXX and 90% SGOV. It has an estimated return of 6.81% and volatility of 3.84%. These are estimates from historical data, not guaranteed outcomes.
+
+[01:27] Equal weight passes the simplified model checks but has estimated volatility of 13.69%. Inverse volatility has lower estimated volatility but fails the return objective. The 60/40 benchmark proxy fails the reserve minimum and is not an exact global equity benchmark.
+
+[01:54] The stress that matters most to my decision reduces SGOV's expected return by 1 percentage point. The selected mix becomes 10% SOXX, 10% VTI, and 80% SGOV. The largest weight shift is 10 percentage points, above the proposed five-point stability tolerance. Across the base, short-window, and SGOV stress scenarios, SOXX ranges from 5% to 10% and SGOV from 80% to 95%. That is an observed scenario range, not a recommended allocation range.
+
+[02:29] The process stops for live adoption if the model constraints fail, there is no feasible solution, assumptions cannot be justified, or the agreed stability condition is breached. The team should monitor return assumptions, costs, liquidity, realized risk, and allocation drift. A committee should reconsider the rejection only after the mandate and risk measures are approved, forward assumptions are independently supported, implementation costs are tested, and the agreed stresses pass.
+
+[02:57] My ask is to decline live adoption now, assign an owner to the unresolved mandate and data issues, and review a classroom pilot separately. Thank you.
