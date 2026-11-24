@@ -1,0 +1,21 @@
+Project 2 - Video 2 — corrected transcript
+
+[00:02] Hello, I am Peter Meixner and this is Video 2 for my Project 2 investment management application. I will show how the code produces the portfolio and demonstrate a stress test.
+
+[00:14] I used OpenAI Codex to help build and validate the code and draft the analysis. I have reviewed the analysis and decision and take responsibility for them. This is for education, not investment advice.
+
+[00:29] A reviewer installs the requirements and runs `python -m streamlit run app.py`, then selects the Intel-related fund example. The app loads the saved monthly prices.
+
+[00:47] The prices have 61 monthly observations yielding 60 monthly returns. The data were downloaded in October 2026, and the latest month in the saved example is September 2026.
+
+[01:12] The estimate function calculates monthly percentage changes and annualizes the arithmetic mean by multiplying by 12 and annualizes sample standard deviation by the square root of 12.
+
+[01:25] The search function enumerates fully invested, nonnegative allocations in 5-percentage-point increments. It calculates expected return and eligible reserve weight, skips combinations that fail either modeled threshold, and chooses the remaining combination with the lowest estimated volatility.
+
+[01:55] The table compares equal weight, inverse volatility, a 60/40 VTI and BND benchmark proxy, and the constrained solution. A pass only covers the simplified model rules. It does not certify the complete Lab 13 mandate. The benchmark proxy uses US equity rather than global equity and fails the example's SGOV reserve requirement.
+
+[02:21] With the 1% annual cost drag, the model selects 10% SOXX, 10% VTI, and 80% SGOV.
+
+[02:39] Raising the SGOV minimum to 95% under this cost assumption leaves no feasible mix on the grid. This is an illustrative uniform annual drag, not a full transaction-cost model. The historical adjusted prices may have been revised after earlier dates. They do not establish a point-in-time backtest. The separate dated Treasury yield is context and does not determine the weights.
+
+[03:09] The validation record explains the earlier tests, AI assistance, and limitations. The model should not be treated as a guarantee of future returns or full mandate compliance. Thank you.
